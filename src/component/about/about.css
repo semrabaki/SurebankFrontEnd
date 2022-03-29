@@ -1,0 +1,28 @@
+
+.media {
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .about-image{
+    position: relative;
+  }
+  
+  .media-left {
+    width: 79px;
+    height: 79px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 79px;
+    margin-right: 25px;
+  }
+  .media-body p {
+    color: #5a6471;
+    margin-bottom: 0;
+  }
+  .media-1{
+    background: green;
+  }
+  .media-2{
+    background: #083996;
+  }
