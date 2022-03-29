@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+/*Banner Style*/
+.banner {
+  height: 300px;
+}
+
+.pdt-50 {
+  padding-top: 50px;
+}
+
+fieldset {
+  margin: 20px !important;
+  padding: 15px 20px 10px !important;
+  border: 1px solid #666 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 10px grey !important;
+  padding-top: 10px 
+}
+
+fieldset > legend {
+  float: left;
+}
+
+button:hover {
+  color: yellow;
+  opacity: 0.8;
+}
