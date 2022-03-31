@@ -89,19 +89,6 @@ const Login = () => {
     const state=useContext(StateContext);
     const navigate=useNavigate();
 
-
-    const submitForm=async(values,actions)=>{
-
-        try{
-            const response=  await client.login(values);
-        if(response&&response.status===200){
-            const jwt=response.data;
-            sessionStorage.setItem(
-                "token",
-                JSON.stringify({token:jwt.token})
-            );
-          toast.success("You logged in successfully");
-
           const submitForm=async(values,actions)=>{
             try{
                 // we put await until login fucntion returns its resposne
