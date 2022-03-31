@@ -1,0 +1,12 @@
+.container{
+    padding: 20px 20px 20px 20px;
+}
+
+
+.register__btn{
+    margin-top:  10px !important;
+}
+
+.textarea{
+    display: block;
+}

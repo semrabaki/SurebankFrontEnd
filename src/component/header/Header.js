@@ -16,8 +16,9 @@ const toggleMenu=()=>{
    
   setMenuOpen(!menuOpen);
 }
-
+// this function is for going to specific part of the page when it is clicked on the menu
 const openPage=(name)=>{
+  // debugger;
   const element=document.getElementById(name);
   if(element){
     element.scrollIntoView({behavior:"smooth"});
@@ -40,10 +41,15 @@ const openPage=(name)=>{
         className="me-auto"
         navbar
       >
-      <SiteMenuItem path="/about" name="About"/>
-      <SiteMenuItem path="/product" name="Products"/>
-      <SiteMenuItem path="/package" name="Packages"/>
-      <SiteMenuItem path="/contact" name="Contact"/>
+      <SiteMenuItem open={openPage} path="/about" name="About"/>
+      <SiteMenuItem open={openPage} path="/product" name="Products"/>
+      <SiteMenuItem open={openPage} path="/package" name="Packages"/>
+      <SiteMenuItem open={openPage} path="/contact" name="Contact"/>
+
+      <NavbarText>
+        <NavLink tag={Link} to="/register">Register</NavLink>
+        <NavLink tag={Link} to="/login">Login</NavLink>
+      </NavbarText>
       </Nav>
       <NavbarText>
         Simple Text
