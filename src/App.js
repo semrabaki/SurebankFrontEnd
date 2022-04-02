@@ -9,12 +9,16 @@ import { userReducer } from './reducers/userReducer';
 
 
 export const StateContext=createContext();
-export const DispatchContext=creareContext();
+export const DispatchContext=createContext();
 
 const App = () => {
 
- const[state,DispatchContext]=useReducer(userReducer,initialState);
+  //dispact to hcnage the state
+ const[state,dispatch]=useReducer(userReducer,initialState); //we use redecue and give initial state
   return (
+    //i rpivide dispacth to the all components below
+    <DispatchContext.Provider value={dispatch}>
+    <StateContext.Provider value={state}> //I provide state to the components below
     <BrowserRouter>
      <Header/>
      <Routes>
@@ -24,6 +28,8 @@ const App = () => {
      <Route path="/*" element={<Home/>}/>
      </Routes> 
     </BrowserRouter>
+    </StateContext.Provider>
+    </DispatchContext.Provider>
    
   )
 }

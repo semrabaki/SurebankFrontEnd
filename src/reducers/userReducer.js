@@ -4,10 +4,11 @@ const initialState = {
     userInfo:{}
 }
 
-const userReducer=(state,action)=>{
+//action -log in or log out
+const userReducer=(state,action)=>{ //reduce the state to manage the user information
     switch(action.type){
         case"LOGIN":{
-            return{...state,userInfo:action.item}
+            return{...state,userInfo:action.item}  //we are putting usrInfo item into the state
         }
 
         case"LOGOUT":{

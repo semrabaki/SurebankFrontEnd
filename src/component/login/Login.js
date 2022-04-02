@@ -87,6 +87,11 @@ const LoginForm=(props)=>(
 )
 
  const Login = (props) => {
+
+  //we have th user infor  in here and we need to put user info the state and I will use this user data in the header js. We need to import dispacth ontext and state context from the app so that we can put the userinfo to the central area
+   const dispatch=useContext(DispatchContext);
+   const state=useContext(StateContext);
+   const navigate=useNavigate();
     //call back function means- formik will call it later      
   const submitForm=async(values,actions)=>{
     try{
@@ -107,7 +112,19 @@ const LoginForm=(props)=>(
       const userInfoResponse= await client.getUserInfo();
       if(userInfoResponse&&userInfoResponse.status===200){
         const userInfo=userInfoResponse.data;
-        toast.success(userInfo.user.firstName); //user i backende user class tipinden oldigni icin user.firstnmae dedik
+       // toast.success(userInfo.user.firstName); //user i backende user class tipinden oldigni icin user.firstnmae dedik
+
+       dispatch({
+         type:"LOGIN",
+         item:userInfo.userInfo.user
+       }); // we are getting the user info
+
+       if(userInfo&&userInfo.user){ 
+         navigate("/") //if user info ve user var ise home ogae e gidicek yoksa login page gidicek
+       }else{
+         navigate("/login")
+       }
+
       }
       }
       actions.resetForm();

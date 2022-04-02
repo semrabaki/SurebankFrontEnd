@@ -9,11 +9,27 @@ import { useState } from 'react'
 import { SiteMenuItem } from './SiteMenuItem'
 import AdminMenu from './AdminMenu'
 import CustomerMenu from './CustomerMenu'
+import { useContext } from 'react'
+import { StateContext } from '../../App'
 
 const Header = () => {
 
   const[menuOpen,setMenuOpen]=useState(false);
 
+ // I want to pass data from the Header.js to other compoenets so I created state obejct
+  const state= useContext(StateContext); //I want to get data from state so I use useContext hook we give sttae context that we created in app.js
+
+
+ // we got the user infor with state from log in above and we are getiing the user role below
+ let isCustomer;
+ let isAdmin;
+
+ if(state&&state.userInfo){
+   isCustomer=hasAnyRole(state.userInfo.roles,["Costumer"]);
+   isAdmin=hasAnyRole(state.userInfo.roles,["Admin"]);
+
+
+ }
 const toggleMenu=()=>{
    
   setMenuOpen(!menuOpen);
@@ -48,16 +64,14 @@ const openPage=(name)=>{
       <SiteMenuItem open={openPage} path="/package" name="Packages"/>
       <SiteMenuItem open={openPage} path="/contact" name="Contact"/>
 
-      <AdminMenu/>
-      <CustomerMenu/>
+      {isAdmin?<AdminMenu/>:null}
+      {isCustomer?<CustomerMenu/>:null}
+
+</Nav>
 
       <NavbarText>
         <NavLink tag={Link} to="/register">Register</NavLink>
         <NavLink tag={Link} to="/login">Login</NavLink>
-      </NavbarText>
-      </Nav>
-      <NavbarText>
-      
       </NavbarText>
     </Collapse>
   </Navbar>
