@@ -4,9 +4,16 @@ import Header from './component/header/Header';
 import Home from './component/home/Home';
 import Register from './component/register/Register';
 import Login from './component/login/Login'
+import { useReducer } from 'react';
+import { userReducer } from './reducers/userReducer';
 
+
+export const StateContext=createContext();
+export const DispatchContext=creareContext();
 
 const App = () => {
+
+ const[state,DispatchContext]=useReducer(userReducer,initialState);
   return (
     <BrowserRouter>
      <Header/>

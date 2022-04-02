@@ -7,6 +7,8 @@ import {Navbar,NavbarBrand,NavbarToggler,
 } from 'reactstrap'
 import { useState } from 'react'
 import { SiteMenuItem } from './SiteMenuItem'
+import AdminMenu from './AdminMenu'
+import CustomerMenu from './CustomerMenu'
 
 const Header = () => {
 
@@ -46,13 +48,16 @@ const openPage=(name)=>{
       <SiteMenuItem open={openPage} path="/package" name="Packages"/>
       <SiteMenuItem open={openPage} path="/contact" name="Contact"/>
 
+      <AdminMenu/>
+      <CustomerMenu/>
+
       <NavbarText>
         <NavLink tag={Link} to="/register">Register</NavLink>
         <NavLink tag={Link} to="/login">Login</NavLink>
       </NavbarText>
       </Nav>
       <NavbarText>
-        Simple Text
+      
       </NavbarText>
     </Collapse>
   </Navbar>
