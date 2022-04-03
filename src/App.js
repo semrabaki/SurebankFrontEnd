@@ -5,7 +5,9 @@ import Home from './component/home/Home';
 import Register from './component/register/Register';
 import Login from './component/login/Login'
 import { useReducer } from 'react';
-import { userReducer } from './reducers/userReducer';
+import { initialState, userReducer } from './reducers/userReducer'
+import { Logout } from '@mui/icons-material';
+import { createContext } from 'react'
 
 
 export const StateContext=createContext();
@@ -24,6 +26,7 @@ const App = () => {
      <Routes>
       <Route path="/register" element={<Register/>}></Route>
      <Route path="/login" element={<Login/>}></Route>  
+     <Route path="/logout" element={<Logout/>}></Route>  
      {/* when you add * it means that for the other path go to home */}
      <Route path="/*" element={<Home/>}/>
      </Routes> 

@@ -20,7 +20,7 @@ const Logout = () => {
     }
 
     const handleNo=()=>{
-        navigate(-1);
+        navigate(-1); //it is for previous page it is goign to go to previous page
     }
 
   return (

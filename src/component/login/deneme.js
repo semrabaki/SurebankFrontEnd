@@ -3,6 +3,7 @@ import { Field, Formik } from 'formik'
 import React from 'react'
 import { Button, Col, Container, Form, FormFeedback, Input, InputGroup, InputGroupText, Row, Spinner } from 'reactstrap';
 import * as Yup from "yup";
+import './login.css'
 
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import {faUserLock} from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +21,7 @@ const LoginSchema=Yup.object().shape(
     }
 );
 
-
+ 
 
 const LoginForm=(props)=>(
    <Container>
@@ -30,7 +31,8 @@ const LoginForm=(props)=>(
             <Form>
                    <Row className="justify-content-start">
                        <Col lg="4" className="text-center p-3">
-                           <InputGroup>
+                       {/* when you want to use icon you need to use InputGroup instead of FormGroup */}
+                           <InputGroup> 
                                 <InputGroupText>
                                    <FontAwesomeIcon icon={faUserCircle}/>UserName
                                 </InputGroupText>
@@ -82,55 +84,66 @@ const LoginForm=(props)=>(
        </fieldset>
 
    </Container>
-);
+)
 
-const Login = () => {
-    const dispatch=useContext(DispatchContext);
-    const state=useContext(StateContext);
-    const navigate=useNavigate();
+ const Login = (props) => {
 
+  //we have th user infor  in here and we need to put user info the state and I will use this user data in the header js. We need to import dispacth ontext and state context from the app so that we can put the userinfo to the central area
+   const dispatch=useContext(DispatchContext);
+   const state=useContext(StateContext);
+   const navigate=useNavigate();
+    //call back function means- formik will call it later      
+  const submitForm=async(values,actions)=>{
+    try{
+      // we put await until login fucntion returns its resposne
+      const response=await client.login(values);
+      if(response&&response.status===200){
+        // by using axios when you put response.data you can get what is sent by backend
+       const jwt= response.data; //  in here we are getting the token and stringy it from response.data object
+      //sessionStorage->when I log in the application we get token from the backend side.We need to use this token for every api call
+    //wee need to save this token so session storage(or local storage) is the place we save this token
+    //when you close the tab you loose the data in the session storage
+    //when you use local storage even you close the computer the data is saved still
+       sessionStorage.setItem(
+          //we can create string form an object with JSON.stringify
+         "token",JSON.stringify({token:jwt.token})//we are getting token from inside the jwt response token needs to match to backend in the name convention
+       );
+       debugger;
+       toast.success("You logged in successfully");
+      const userInfoResponse= await client.getUserInfo();
+      if(userInfoResponse&&userInfoResponse.status===200){
+        const userInfo=userInfoResponse.data;
+       // toast.success(userInfo.user.firstName); //user i backende user class tipinden oldigni icin user.firstnmae dedik
 
-    const submitForm=async(values,actions)=>{
+       dispatch({
+         type:"LOGIN",
+         item:userInfo.userInfo.user
+       }); // we are getting the user info
 
-        try{
-        const response=  await client.login(values);
-        if(response&&response.status===200){
-            const jwt=response.data;
-            sessionStorage.setItem(
-                "token",
-                JSON.stringify({token:jwt.token})
-            );
-            debugger;
-          toast.success("You logged in successfully");
-    
-    
-          const userInfoResponse=await client.getUserInfo();
-          if(userInfoResponse&&userInfoResponse.status===200){
-              const userInfo=userInfoResponse.data;
-              
-              dispatch({
-                  type:"LOGIN",
-                  item: userInfo.user,
-              }
-              );
-              if(userInfo && userInfo.user){
-                  navigate("/");
-              }else{
-                navigate("/login");
-              }
-          }
-        }
-         actions.resetForm();
-        }catch(err){
-           toastError(err);
-    
-        }
-        actions.setSubmitting(false); 
+       if(userInfo&&userInfo.user){ 
+         navigate("/") //if user info ve user var ise home ogae e gidicek yoksa login page gidicek
+       }else{
+         navigate("/login")
+       }
+
+      }
+      }
+      actions.resetForm();
+
+    }catch(err){
+
+      toastError(err);
+
     }
-    
+    actions.setSubmitting(false);
+  }
+
+
+
+
+
 
   return (
-    <div>
      <Formik
            initialValues={{
                    userName:"",
@@ -144,9 +157,7 @@ const Login = () => {
            component={LoginForm} 
 >
      </Formik>
-
-    </div>
   )
-}
+          }
 
 export default Login
