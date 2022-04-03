@@ -1,7 +1,8 @@
 import React from 'react'
+import { Button, Col, Container, Form, FormFeedback, Input, InputGroup, InputGroupText, Row, Spinner } from 'reactstrap';
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { DispatchContext } from '../App'
+import { DispatchContext } from '../../App'
 import "./logout.css"
 
 const Logout = () => {
@@ -10,10 +11,11 @@ const Logout = () => {
     const navigate=useNavigate();
 
     const handleYes=()=>{
+      debugger;
         sessionStorage.clear("token");
         dispatch({   // with this we are changing the state
             type:"LOGOUT",
-            item:null, //I want to delete user info that is why i put null
+            item:null      //I want to delete user info that is why i put null
         });
 
         navigate("/");

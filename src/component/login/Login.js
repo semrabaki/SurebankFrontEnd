@@ -100,10 +100,10 @@ const Login = () => {
                 "token",
                 JSON.stringify({token:jwt.token})
             );
-            debugger;
+          
           toast.success("You logged in successfully");
     
-    
+
           const userInfoResponse=await client.getUserInfo();
           if(userInfoResponse&&userInfoResponse.status===200){
               const userInfo=userInfoResponse.data;

@@ -1,6 +1,6 @@
 // All fetching fucntions will be in this file
 import axios from "axios"
-const BASE_URL="http://localhost:8081"
+const BASE_URL="http://localhost:8083"
 //we are creating function to get the token from the session storage so that we can get the user uthentation info
 function getToken(){
     let auth=sessionStorage.getItem("token");
@@ -15,9 +15,10 @@ function getToken(){
 
 
 const getAxiosInstance=()=>{
+    debugger;
     const token=getToken();
     const axiosInstance=axios.create({
-        header:{
+        headers:{
             Authorization:token
         }
     })
@@ -41,4 +42,4 @@ class SureBankClient{
     }
 }
 
-export default new SureBankClient;
+export default new SureBankClient();

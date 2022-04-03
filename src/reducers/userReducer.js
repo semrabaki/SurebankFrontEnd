@@ -12,7 +12,7 @@ const userReducer=(state,action)=>{ //reduce the state to manage the user inform
         }
 
         case"LOGOUT":{
-            return{...state,useInfo:action.item}
+            return{...state,userInfo:action.item}
         }
 
         default:
