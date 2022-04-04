@@ -2,7 +2,7 @@ import React from 'react'
 import {Formik,Field} from 'formik' //it will be used for form operations
 import * as Yup from "yup" //login process
 import {toast} from  'react-toastify' //for notification messages
-import { Button, Col, Container, Form, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Button, Col, Container, Form, FormFeedback, FormGroup, Input, Label, Row, Spinner} from 'reactstrap';
 import moment from 'moment'
 import './register.css'
 import client from "../../service/SureBankClient";
@@ -133,6 +133,7 @@ const RegistrationForm=(props)=>(
 
                       <FormFeedback>{props.errors.lastName}</FormFeedback>
                       </FormGroup> 
+
 
 
             </Col>   
@@ -276,6 +277,9 @@ const RegistrationForm=(props)=>(
             </Col>    
         </Row>
 
+     <Row className='justfy-content-start'>
+     {props.isSubmitting&&<Spinner> </Spinner>}
+     </Row>
     </Form>
     </fieldset>
 

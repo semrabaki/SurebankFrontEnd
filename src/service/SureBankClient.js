@@ -40,6 +40,35 @@ class SureBankClient{
        return getAxiosInstance().get(BASE_URL+"/user/userInfo");
 
     }
+
+    deposit(depositInfo){
+        return getAxiosInstance().post(BASE_URL+"/account/deposit",depositInfo);
+    }
+    withdraw(withdrawInfo){
+        return getAxiosInstance().post(BASE_URL+"/account/withdraw",withdrawInfo);
+    }
+
+    transfer(transferInfo){
+        return getAxiosInstance().post(BASE_URL+"/account/transfer",transferInfo);
+    } 
+
+    getRecipients(){
+         return getAxiosInstance().get(BASE_URL+"/account/recipient");
+     }
+
+     addRecipient(recipientInfo){
+         return getAxiosInstance().post(BASE_URL+"/account/recipient",recipientInfo);
+     }
+
+     deleteRecipient(id){
+         return getAxiosInstance().delete(BASE_URL+"/account/recipient/"+id);
+     }
+
+     getCustomerStatement(sDate,eDate){
+         const requestParam={params:{startDate:sDate,endDate:eDate}};
+         return getAxiosInstance().get(BASE_URL+"/account/customerstatement",requestParam);
+     }
+
 }
 
 export default new SureBankClient();
