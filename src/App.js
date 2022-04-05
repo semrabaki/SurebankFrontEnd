@@ -14,6 +14,9 @@ import { useEffect } from "react";
 import Deposit from "./component/deposit/Deposit";
 import Withdraw from "./component/withdraw/Withdraw";
 import Transfer from "./component/transfer/Transfer";
+import RecipientManagement from "./component/recipient/RecipientManagement";
+import './App.css';
+import TransactionQuery from "./component/transaction/TransactionQuery";
 
 export const StateContext = createContext();
 export const DispatchContext = createContext();
@@ -56,8 +59,8 @@ const App = () => {
             <Route path="/deposit" element={<Deposit />}></Route>
             <Route path="/withdraw" element={<Withdraw/>}></Route>
             <Route path="/transfer" element={<Transfer/>} />
-             {/* <Route path="/recipient" element={<RecipientManagement />}/> */}
-            {/* <Route path="/transactions" element={<TransactionQuery />} />   */}
+            <Route path="/recipient" element={<RecipientManagement />}/>
+            <Route path="/transactions" element={<TransactionQuery/>} />  
             {/* when you add * it means that for the other path go to home */}
             <Route path="/*" element={<Home />} />
           </Routes>

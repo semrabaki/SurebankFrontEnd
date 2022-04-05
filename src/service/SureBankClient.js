@@ -1,6 +1,6 @@
 // All fetching fucntions will be in this file
 import axios from "axios"
-const BASE_URL="http://localhost:8083"
+const BASE_URL="http://localhost:8081"
 //we are creating function to get the token from the session storage so that we can get the user uthentation info
 function getToken(){
     let auth=sessionStorage.getItem("token");
