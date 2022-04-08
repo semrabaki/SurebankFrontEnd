@@ -51,7 +51,8 @@ const CustomerMenu = () => {
 
       <DropdownItem
        tag={Link}
-       to="/transactions" 
+       to="/transactions"
+       state={{isCustomer:true}}  
       >
        Transactions
       </DropdownItem>

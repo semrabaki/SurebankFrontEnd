@@ -77,46 +77,66 @@ const TransactionQueryForm = (props) => (
   </Container>
 );
 const TransactionQuery = (props) => {
-const [dates,setDates]=useState({});
-const [statement,setStatement]=useState({});
+  const [dates, setDates] = useState({});
+  const [statement, setStatement] = useState({});
+  const location = useLocation();
 
+  useEffect(() => {
+    setStatement({});
+  }, [location.state]);
 
+  let isAdmin = false;
+  let isCustomer = false;
+
+  if (location.state.isAdmin) {
+    isAdmin = true;
+  }
+
+  if (location.state.isCustomer) {
+    isCustomer = true;
+  }
 
   const submitForm = async (values, actions) => {
-    try{
-      // we are converting the date the format we want
-      const {startDate,endDate}=values;
-      const d1= moment(startDate,"YYYY-MM-DD");
-      const d2= moment(endDate,"YYYY-MM-DD");
+    try {
+        
+      const { startDate, endDate } = values;
 
-    // finding the days between to day
-    const diff=  moment.duration(d2.diff(d1)).asDays();
+      const d1 = moment(startDate, "YYYY-MM-DD");
+      const d2 = moment(endDate, "YYYY-MM-DD");
 
-    if(diff>15){
-      toast.error("Between two dates must be max. 15 days", {
-        position:toast.POSITION.TOP_CENTER
-      });
-      actions.setSubmitting(false);
-      return;
-    }
+      const diff = moment.duration(d2.diff(d1)).asDays();
 
+      if (diff > 15) {
+        toast.error("Between two dates must be max. 15 days", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        actions.setSubmitting(false);
+        return;
+      }
 
-    setDates({startDate:startDate,endDate:endDate});
-   const response= await client.getCustomerStatement(startDate,endDate);
+      setDates({ startDate: startDate, endDate: endDate });
 
-   if(response && response.status===200){
-     setStatement(response);
+      let response;
 
-   }
+      if (isAdmin) {
+         response = await client.getBankStatement(startDate, endDate);
+      } else if(isCustomer) {
+         response = await client.getCustomerStatement(startDate, endDate);
+      }
 
-    }catch(error){
+      if (response && response.status === 200) {
+        setStatement(response.data);
+      }
+    } catch (error) {
       toastError(error);
-
     }
     actions.setSubmitting(false);
-  }
- return (<>
-    <div>
+  };
+
+  return (
+    <>
+      {" "}
+      <div>
         <Formik
           initialValues={{
             startDate: "",
@@ -129,8 +149,16 @@ const [statement,setStatement]=useState({});
           component={TransactionQueryForm}
         ></Formik>
       </div>
-    {/* <div><TransactionList dates={dates} transactions={statement.list}/></div> */}
+      <div>
+        <TransactionList
+          isCustomer={isCustomer}
+          isAdmin={isAdmin}
+          dates={dates}
+          transactions={statement.list}
+        />
+      </div>
     </>
   );
 };
-export default TransactionQuery
+
+export default TransactionQuery;

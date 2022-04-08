@@ -31,8 +31,8 @@ const TransactionList = (props) => {
                                           <th>Amount</th>
                                           <th>Balance</th>
                                           <th>Description</th>
-                                          {/* {props.isAdmin?<th>Account Number</th>:null}
-                                          {props.isAdmin?<th>Name</th>:null} */}
+                                          {props.isAdmin?<th>Account Number</th>:null}
+                                          {props.isAdmin?<th>Name</th>:null}
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -49,8 +49,8 @@ const TransactionList = (props) => {
                                         <td>{tr.amount}</td>
                                         <td>{tr.availableBalance}</td>
                                         <td>{tr.description}</td>
-                                        {/* {props.isAdmin&&tr.account?<td>{tr.account.accountNumber}</td>:null}
-                                        {props.isAdmin&&tr.account&&tr.account.user?<td>{tr.account.user.firstName+" "+tr.account.user.lastName}</td>:null} */}
+                                        {props.isAdmin&&tr.account?<td>{tr.account.accountNumber}</td>:null}
+                                        {props.isAdmin&&tr.account&&tr.account.user?<td>{tr.account.user.firstName+" "+tr.account.user.lastName}</td>:null}
                                         </tr>
                                         ))
                                     }  

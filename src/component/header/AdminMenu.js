@@ -13,8 +13,8 @@ const AdminMenu = () => {
       style={{maxHeight:"80vh", overflow:"auto"}}
 >
 
-      <DropdownItem
-    //   link is coming from react routet dom
+<DropdownItem
+//   link is coming from react routet dom
        tag={Link}
        to="/admin-dashboard" 
       >
@@ -24,7 +24,8 @@ const AdminMenu = () => {
 
       <DropdownItem
        tag={Link}
-       to="/alltransactions" 
+       to="/alltransactions"
+       state={{isAdmin:true}} 
       >
        Transaction Query
       </DropdownItem>
@@ -37,6 +38,7 @@ const AdminMenu = () => {
       >
        User Management
       </DropdownItem>
+
 
     </NavDropdown>
 

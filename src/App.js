@@ -17,6 +17,8 @@ import Transfer from "./component/transfer/Transfer";
 import RecipientManagement from "./component/recipient/RecipientManagement";
 import './App.css';
 import TransactionQuery from "./component/transaction/TransactionQuery";
+import CustomerDashboard from "./component/dashboard/CustomerDashboard";
+import AdminDashboard from "./component/dashboard/AdminDashboard";
 
 export const StateContext = createContext();
 export const DispatchContext = createContext();
@@ -61,6 +63,9 @@ const App = () => {
             <Route path="/transfer" element={<Transfer/>} />
             <Route path="/recipient" element={<RecipientManagement />}/>
             <Route path="/transactions" element={<TransactionQuery/>} />  
+            <Route path="/alltransactions" element={<TransactionQuery/>} /> 
+            <Route path="/admin-dashboard" element={<AdminDashboard/>} />  
+            <Route path="//dashboard" element={<CustomerDashboard/>} />   
             {/* when you add * it means that for the other path go to home */}
             <Route path="/*" element={<Home />} />
           </Routes>

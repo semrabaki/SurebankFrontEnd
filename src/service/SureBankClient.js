@@ -65,9 +65,14 @@ class SureBankClient{
      }
 
      getCustomerStatement(sDate,eDate){
-         const requestParam={params:{startDate:sDate,endDate:eDate}};
-         return getAxiosInstance().get(BASE_URL+"/account/customerstatement",requestParam);
-     }
+        const requestParam={params:{startDate:sDate,endDate:eDate}};
+        return getAxiosInstance().get(BASE_URL+"/account/customerstatement",requestParam);
+    }
+
+    getBankStatement(sDate,eDate){
+       const requestParam={params:{startDate:sDate,endDate:eDate}};
+       return getAxiosInstance().get(BASE_URL+"/account/bankstatement",requestParam);
+    }
 
 }
 
