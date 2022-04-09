@@ -65,7 +65,7 @@ const App = () => {
             <Route path="/transactions" element={<TransactionQuery/>} />  
             <Route path="/alltransactions" element={<TransactionQuery/>} /> 
             <Route path="/admin-dashboard" element={<AdminDashboard/>} />  
-            <Route path="//dashboard" element={<CustomerDashboard/>} />   
+            <Route path="/dashboard" element={<CustomerDashboard/>} />   
             {/* when you add * it means that for the other path go to home */}
             <Route path="/*" element={<Home />} />
           </Routes>

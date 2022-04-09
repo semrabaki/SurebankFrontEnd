@@ -38,6 +38,7 @@ useEffect(()=>{
   return (
       <div>
       debugger;
+      console.lod("deneme");
         {statement?( 
              <Container>
                  <fieldset>
