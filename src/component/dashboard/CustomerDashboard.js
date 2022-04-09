@@ -36,11 +36,12 @@ useEffect(()=>{
 
 
   return (
-    <div>
-      {statement ? (
-        <Container>
-          <fieldset>
-          <Card lg="3" className="p-3">
+      <div>
+      debugger;
+        {statement?( 
+             <Container>
+                 <fieldset>
+                          <Card className="card">
                               <CardImg
                               className="cardimg account"
                               src={account}
