@@ -89,6 +89,12 @@ const Login = () => {
     const state=useContext(StateContext);
     const navigate=useNavigate();
 
+    //when I go to /login path if I am alreayd logged in it directs me to home page
+    if(state.userInfo&&state.userInfo.userName){
+      navigate("/");
+
+    }
+
 
     const submitForm=async(values,actions)=>{
 

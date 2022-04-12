@@ -7,6 +7,9 @@ import moment from 'moment'
 import './register.css'
 import client from "../../service/SureBankClient";
 import {toastError} from "../../util/Toast"
+import { useContext } from 'react';
+import { StateContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -287,6 +290,14 @@ const RegistrationForm=(props)=>(
 )
 
 const Register = () => {
+  const state= useContext(StateContext);
+  const navigate=useNavigate();
+
+  if(state.userInfo&&state.userInfo.userName){
+    navigate("/");
+
+  }
+
   return (
     <div>
 

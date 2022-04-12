@@ -79,8 +79,8 @@ const Withdraw = () => {
   const state = useContext(StateContext);
   return (
     <div>
-      {!state.userInfo && navigate("/login")}
-      {state.userInfo && state.userInfo.userName && (
+    {/* this code was used before we add the privateroute component it is basically checking if the user info avaliable use can go to deposit page */}
+      {/* {state.userInfo && state.userInfo.userName && ( */}
         <div>
           <div>
             <Formik
@@ -105,7 +105,7 @@ const Withdraw = () => {
             ></Formik>
           </div>
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 };

@@ -11,6 +11,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
+import ContactMessage from "../contact-message/ContactMessage";
 const Footer = () => {
   return (
     <div id="Contact">
@@ -29,6 +30,12 @@ const Footer = () => {
                   <li>info@surebank.com</li>
                   <li>234-1234568</li>
                 </ul>
+              </div>
+            </Col>
+            <Col sm="5">
+              <div className="widget">
+                 <div className="widget-title">Contact Form</div>
+                  <ContactMessage/>
               </div>
             </Col>
             <Col>

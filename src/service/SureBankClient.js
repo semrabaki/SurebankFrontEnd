@@ -36,6 +36,10 @@ class SureBankClient{
     login(loginInfo){
         return axios.post(BASE_URL+"/login", loginInfo);
     }
+    // we do not need any token to send message so we cna just diretcly use post
+    sendMessage(messageInfo){
+        return axios.post(BASE_URL+"/message/visitor",messageInfo);
+    }
     getUserInfo(){
        return getAxiosInstance().get(BASE_URL+"/user/userInfo");
 
