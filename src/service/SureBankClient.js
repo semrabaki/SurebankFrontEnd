@@ -1,6 +1,9 @@
 // All fetching fucntions will be in this file
 import axios from "axios"
 const BASE_URL="http://localhost:8081"
+export const itemsCountPerPage=10;
+
+
 //we are creating function to get the token from the session storage so that we can get the user uthentation info
 function getToken(){
     let auth=sessionStorage.getItem("token");
@@ -40,6 +43,11 @@ class SureBankClient{
     sendMessage(messageInfo){
         return axios.post(BASE_URL+"/message/visitor",messageInfo);
     }
+
+    //since it needs autohirzation we put getAxiosIntsance
+    getMessages(){
+        return getAxiosInstance().get(BASE_URL+"/message");
+    }
     getUserInfo(){
        return getAxiosInstance().get(BASE_URL+"/user/userInfo");
 
@@ -77,6 +85,11 @@ class SureBankClient{
        const requestParam={params:{startDate:sDate,endDate:eDate}};
        return getAxiosInstance().get(BASE_URL+"/account/bankstatement",requestParam);
     }
+
+    //in backende we used pagable parameter  so we are seidngin it as parameter
+    getAllUsers(page){
+        return getAxiosInstance().get(BASE_URL+`/user/all?page=${page}&size=${itemsCountPerPage}&sort=id,asc`);   
+     }
 
 }
 

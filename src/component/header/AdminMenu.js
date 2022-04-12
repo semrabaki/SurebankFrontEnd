@@ -38,9 +38,13 @@ const AdminMenu = () => {
       >
        User Management
       </DropdownItem>
-
-
+      
+   
+      <DropdownItem tag={Link} to="/messages">
+        Messages
+      </DropdownItem>
     </NavDropdown>
+
 
     
 

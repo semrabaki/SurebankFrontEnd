@@ -56,9 +56,10 @@ const validationSchema = Yup.object().shape({
 const submitForm = async (values, action) => {
   try {
     const response = await client.sendMessage(values);
+    debugger;
     if (response.status === 201 && response.data.success) {
       toast.success(response.data.message, {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.TOP_CENTER
       });
     }
   } catch (err) {
@@ -160,10 +161,10 @@ const ContactMessageForm = (props) => (
   </Container>
 );
 
+debugger;
 const ContactMessage = () => {
   return (
     <div>
-    debugger;
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

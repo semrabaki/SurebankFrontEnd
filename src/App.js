@@ -21,6 +21,8 @@ import TransactionQuery from './component/transaction/TransactionQuery'
 import CustomerDashboard from './component/dashboard/CustomerDashboard'
 import AdminDashboard from './component/dashboard/AdminDashboard'
 import PrivateRoute from './component/privateroute/PrivateRoute'
+import ContactMessageList from './component/contact-message/ContactMessageList'
+import UserManagement from './component/usermanagement/UserManagement'
 
 export const StateContext=createContext();
 export const DispatchContext=createContext();
@@ -72,6 +74,8 @@ const App = () => {
               <Route path="/alltransactions" element={<PrivateRoute><TransactionQuery/></PrivateRoute>}/>
               <Route path="/dashboard" element={<PrivateRoute><CustomerDashboard/></PrivateRoute>}/>
               <Route path="/admin-dashboard" element={<PrivateRoute><AdminDashboard/></PrivateRoute>}/>
+              <Route path="/messages" element={<PrivateRoute><ContactMessageList/></PrivateRoute>}/>
+              <Route path="/user-management" element={<PrivateRoute><UserManagement/></PrivateRoute>}/>
             {/* when you add * it means that for the other path go to home */}
             <Route path="/*" element={<Home />} />
           </Routes>
