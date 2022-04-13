@@ -23,6 +23,7 @@ import AdminDashboard from './component/dashboard/AdminDashboard'
 import PrivateRoute from './component/privateroute/PrivateRoute'
 import ContactMessageList from './component/contact-message/ContactMessageList'
 import UserManagement from './component/usermanagement/UserManagement'
+import UserEdit from './component/usermanagement/UserEdit'
 
 export const StateContext=createContext();
 export const DispatchContext=createContext();
@@ -76,6 +77,8 @@ const App = () => {
               <Route path="/admin-dashboard" element={<PrivateRoute><AdminDashboard/></PrivateRoute>}/>
               <Route path="/messages" element={<PrivateRoute><ContactMessageList/></PrivateRoute>}/>
               <Route path="/user-management" element={<PrivateRoute><UserManagement/></PrivateRoute>}/>
+              {/* :id means the path will include the id */}
+              <Route path="/user-edit/:id" element={<PrivateRoute><UserEdit/></PrivateRoute>}/>
             {/* when you add * it means that for the other path go to home */}
             <Route path="/*" element={<Home />} />
           </Routes>

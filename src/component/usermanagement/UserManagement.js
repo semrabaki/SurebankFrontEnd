@@ -27,6 +27,7 @@ const UserManagement = () => {
         try{
             const usersDataResponse=await client.getAllUsers(activePage);
         if(usersDataResponse&&usersDataResponse.status===200){
+            // content object has all user list
            const usersData= usersDataResponse.data.content;
            setUsersData(usersData);
            setTotalPage(usersDataResponse.data.totalPage);
@@ -47,6 +48,12 @@ const UserManagement = () => {
     useEffect(()=>{
         getUsersData(activePage);    
     },[activePage])
+
+
+    function handlePageChange(pageNumber){
+        setActivePage(pageNumber-1);
+        getUsersData(pageNumber-1);
+    }
 
   return (
        <Container>
@@ -83,7 +90,7 @@ const UserManagement = () => {
                                        )}</td>
                                        {/* we are putting checkboz input */}
                                        <td><Input type="checkbox" checked={user.enabled}/></td>
- 
+                                         {/* when i click the button i want to update user so i need to go an other page. So i need to add link component over here */}
                                        <td><Link to={`/user-edit/${user.id}`}><Button color="warning">Update</Button></Link></td>         
 
                                   </tr>
@@ -94,6 +101,21 @@ const UserManagement = () => {
                     ):(
                     <p>User List Empty</p>
                         )}
+            </Col>
+        </Row>
+
+        <Row>
+            <Col className="text-center p-3">
+            {/* spring boot requires it as 0 but pagination requires it as 1 */}
+                <Pagination
+                 activePage={activePage+1}
+                 itemsCountPerPage={itemsCountPerPage}
+                 totalItemsCount={totalItemsCount}
+                 totalPages={totalPage}
+                 pageRangeDisplayed={10}
+                 onChange={handlePageChange}
+                />
+                 
             </Col>
         </Row>
 </Container>

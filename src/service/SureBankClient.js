@@ -1,6 +1,7 @@
 // All fetching fucntions will be in this file
 import axios from "axios"
 const BASE_URL="http://localhost:8081"
+
 export const itemsCountPerPage=10;
 
 
@@ -91,6 +92,13 @@ class SureBankClient{
         return getAxiosInstance().get(BASE_URL+`/user/all?page=${page}&size=${itemsCountPerPage}&sort=id,asc`);   
      }
 
+     updateUser(id,user){
+        return getAxiosInstance().put(BASE_URL+"/user/"+id,user);
+    }
+    
+    getUser(id){
+        return getAxiosInstance().get(BASE_URL+"/user/"+id);
+    }
 }
 
 export default new SureBankClient();
