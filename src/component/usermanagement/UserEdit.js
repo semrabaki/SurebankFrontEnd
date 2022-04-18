@@ -101,7 +101,8 @@ const UserEdit = () => {
     try {
       const response = await client.getUser(id);
       if (response && response.status === 200) {
-        const dateStr=response.data.dateOfBirth;
+        // getting the birthdate and converting it to the speciific format
+        const dateStr=response.data.dateOfBirth; 
         const date=moment(dateStr).format('YYYY-MM-DD');
         setDate(date);
         setUser(response.data);
